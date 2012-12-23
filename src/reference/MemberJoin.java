@@ -42,26 +42,26 @@ public class MemberJoin extends JFrame {
 			socketReader = new BufferedReader(new InputStreamReader(
 					soc.getInputStream()));
 		} catch(Exception e) {
-			JOptionPane.showMessageDialog(this, "Á¢¼Ó ½ÇÆÐ");
+			JOptionPane.showMessageDialog(this, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
 	public void formInfo() {
-		lbl1 = new JLabel("ÀÌ         ¸§ :   ");
-		lbl2 = new JLabel("»ý³â¿ùÀÏ : ");
-		lbl3 = new JLabel("³â");
-		lbl4 = new JLabel("¿ù");
-		lbl5 = new JLabel("ÀÏ");
-		lbl6 = new JLabel("ÀüÈ­¹øÈ£ : ");
-		lbl7 = new JLabel("¿¹) 1980 02 05Ã³·³ 4ÀÚ¸®, 2ÀÚ¸®, 2ÀÚ¸® ¼ýÀÚ·Î ÀÛ¼º");
+		lbl1 = new JLabel("ï¿½ï¿½         ï¿½ï¿½ :   ");
+		lbl2 = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : ");
+		lbl3 = new JLabel("ï¿½ï¿½");
+		lbl4 = new JLabel("ï¿½ï¿½");
+		lbl5 = new JLabel("ï¿½ï¿½");
+		lbl6 = new JLabel("ï¿½ï¿½È­ï¿½ï¿½È£ : ");
+		lbl7 = new JLabel("ï¿½ï¿½) 1980 02 05Ã³ï¿½ï¿½ 4ï¿½Ú¸ï¿½, 2ï¿½Ú¸ï¿½, 2ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Û¼ï¿½");
 		tfName = new JTextField(10);
 		tfYear = new JTextField(4);
 		tfMonth = new JTextField(2);
 		tfDay = new JTextField(2);
 		tfPhone = new JTextField(10);
-		btnCheck = new JButton("ÀüÈ­¹øÈ£ Áßº¹È®ÀÎ");
-		btnJoin = new JButton("°¡ÀÔ");
-		btnCancel = new JButton("Ãë¼Ò");
+		btnCheck = new JButton("ï¿½ï¿½È­ï¿½ï¿½È£ ï¿½ßºï¿½È®ï¿½ï¿½");
+		btnJoin = new JButton("ï¿½ï¿½ï¿½ï¿½");
+		btnCancel = new JButton("ï¿½ï¿½ï¿½ï¿½");
 	}
 	class ImagePanel extends JPanel {
 		Image image;
@@ -79,40 +79,42 @@ public class MemberJoin extends JFrame {
 	}
 
 	public void makingForm(){
-		setTitle("È¸¿ø°¡ÀÔ");
+		setTitle("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		ImagePanel i = new ImagePanel();
 		add(i);
-		i.add(lbl1); // ÀÌ¸§
-		lbl1.setBounds(15, 200, 70, 25); // ÀÌ¸§ À§Ä¡
-		i.add(tfName); // ÀÌ¸§ÇÊµå
-		tfName.setBounds(80, 200, 150, 25); // ÀÌ¸§ ÇÊµåÀ§Ä¡
-		i.add(lbl2); // »ý³â¿ùÀÏ Å¸ÀÌÆ²
-		lbl2.setBounds(15, 270, 70, 25); // Å¸ÀÌÆ² À§Ä¡
-		i.add(tfYear); // »ý³âÇÊµå
-		tfYear.setBounds(80, 270, 40, 25); // À§Ä¡
-		i.add(lbl3); // ³â·¹ÀÌºí
-		lbl3.setBounds(125, 270, 70, 25); // À§Ä¡
-		i.add(tfMonth); // ¿ùÇÊµå
-		tfMonth.setBounds(150, 270, 25, 25); // À§Ä¡
-		i.add(lbl4); // ¿ù·¹ÀÌºí
-		lbl4.setBounds(180, 270, 70, 25); // À§Ä¡
-		i.add(tfDay); // ÀÏÇÊµå
-		tfDay.setBounds(200, 270, 25, 25); // À§Ä¡
-		i.add(lbl5); // ÀÏ ·¹ÀÌºí
-		lbl5.setBounds(230, 270, 70, 25); // À§Ä¡
+		i.add(lbl1); // ï¿½Ì¸ï¿½
+		lbl1.setBounds(15, 200, 70, 25); // ï¿½Ì¸ï¿½ ï¿½ï¿½Ä¡
+		i.add(tfName); // ï¿½Ì¸ï¿½ï¿½Êµï¿½
+		tfName.setBounds(80, 200, 150, 25); // ï¿½Ì¸ï¿½ ï¿½Êµï¿½ï¿½ï¿½Ä¡
+		i.add(lbl2); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½Æ²
+		lbl2.setBounds(15, 270, 70, 25); // Å¸ï¿½ï¿½Æ² ï¿½ï¿½Ä¡
+		i.add(tfYear); // ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½
+		tfYear.setBounds(80, 270, 40, 25); // ï¿½ï¿½Ä¡
+		i.add(lbl3); // ï¿½â·¹ï¿½Ìºï¿½
+		lbl3.setBounds(125, 270, 70, 25); // ï¿½ï¿½Ä¡
+		i.add(tfMonth); // ï¿½ï¿½ï¿½Êµï¿½
+		tfMonth.setBounds(150, 270, 25, 25); // ï¿½ï¿½Ä¡
+		i.add(lbl4); // ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
+		lbl4.setBounds(180, 270, 70, 25); // ï¿½ï¿½Ä¡
+		i.add(tfDay); // ï¿½ï¿½ï¿½Êµï¿½
+		tfDay.setBounds(200, 270, 25, 25); // ï¿½ï¿½Ä¡
+		i.add(lbl5); // ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+		lbl5.setBounds(230, 270, 70, 25); // ï¿½ï¿½Ä¡
 		i.add(lbl7);
 		lbl7.setBounds(18, 295, 400, 25);
-		i.add(lbl6); // ÀüÈ­¹øÈ£ ·¹ÀÌºí
-		lbl6.setBounds(15, 350, 70, 25); // À§Ä¡
-		i.add(tfPhone); // ÀüÈ­¹øÈ£ ÇÊµå
-		tfPhone.setBounds(90, 350, 100, 25); // À§Ä¡
-		i.add(btnCheck); // Áßº¹È®ÀÎ¹öÆ°
-		btnCheck.setBounds(15, 420, 150, 30); // À§Ä¡
-		i.add(btnJoin); // °¡ÀÔ¹öÆ°
+		i.add(lbl6); // ï¿½ï¿½È­ï¿½ï¿½È£ ï¿½ï¿½ï¿½Ìºï¿½
+		lbl6.setBounds(15, 350, 70, 25); // ï¿½ï¿½Ä¡
+		i.add(tfPhone); // ï¿½ï¿½È­ï¿½ï¿½È£ ï¿½Êµï¿½
+		tfPhone.setBounds(90, 350, 100, 25); // ï¿½ï¿½Ä¡
+		i.add(btnCheck); // ï¿½ßºï¿½È®ï¿½Î¹ï¿½Æ°
+		btnCheck.addActionListener(check);
+		btnCheck.setBounds(15, 420, 150, 30); // ï¿½ï¿½Ä¡
+		i.add(btnJoin); // ï¿½ï¿½ï¿½Ô¹ï¿½Æ°
 		btnJoin.addActionListener(add);
-		btnJoin.setBounds(15, 460, 70, 25); // À§Ä¡
-		i.add(btnCancel);// Ãë¼Ò¹öÆ°
-		btnCancel.setBounds(95, 460, 70, 25); // À§Ä¡
+		btnJoin.setBounds(15, 460, 70, 25); // ï¿½ï¿½Ä¡
+		i.add(btnCancel);// ï¿½ï¿½ï¿½Ò¹ï¿½Æ°
+		btnCancel.addActionLIstener(cancel);
+		btnCancel.setBounds(95, 460, 70, 25); // ï¿½ï¿½Ä¡
 	}
 
 	
@@ -126,35 +128,35 @@ public class MemberJoin extends JFrame {
 	public boolean validateInput() {
 
 		if (tfName.getText().length() == 0) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfYear.getText().length() == 0) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "¿¬µµ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfYear.getText().length() < 4 
 				|| tfYear.getText().length() > 4) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "¿¬µµ¸¦ È®ÀÎÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfMonth.getText().length() == 0) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "¿ùÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfMonth.getText().length() < 2
 				|| tfMonth.getText().length() > 2) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "¿ùÀ» È®ÀÎÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfDay.getText().length() == 0) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "ÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfDay.getText().length() < 2
 				|| tfDay.getText().length() > 2) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "ÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfPhone.getText().length() == 0) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}else if (tfPhone.getText().length() < 10
 				|| tfPhone.getText().length() > 11) {
-			JOptionPane.showMessageDialog(MemberJoin.this, "ÀüÈ­¹øÈ£¸¦ È®ÀÎÇØÁÖ¼¼¿ä");
+			JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 			return false;
 		}
 		
@@ -178,16 +180,16 @@ public class MemberJoin extends JFrame {
 				try {
 					str = socketReader.readLine();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(MemberJoin.this, "IO ¿À·ù");
+					JOptionPane.showMessageDialog(MemberJoin.this, "IO ï¿½ï¿½ï¿½ï¿½");
 					return;
 				}
 				
 				if (str == null)
 					break;
 				else if(str.equals("Join Success"))
-					JOptionPane.showMessageDialog(MemberJoin.this, "°¡ÀÔ ¼º°ø");
+					JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				else if(str.equals("Join Fail"))
-					JOptionPane.showMessageDialog(MemberJoin.this, "°¡ÀÔ ½ÇÆÐ");
+					JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				
 			}
 		}
@@ -203,16 +205,16 @@ public class MemberJoin extends JFrame {
 				try {
 					str = socketReader.readLine();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(MemberJoin.this, "IO ¿À·ù");
+					JOptionPane.showMessageDialog(MemberJoin.this, "IO ï¿½ï¿½ï¿½ï¿½");
 					return;
 				}
 				
 				if (str == null)
 					break;
 				else if(str.equals("Join Success"))
-					JOptionPane.showMessageDialog(MemberJoin.this, "°¡ÀÔ ¼º°ø");
+					JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				else if(str.equals("Join Fail"))
-					JOptionPane.showMessageDialog(MemberJoin.this, "°¡ÀÔ ½ÇÆÐ");
+					JOptionPane.showMessageDialog(MemberJoin.this, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		}
 	}; 
