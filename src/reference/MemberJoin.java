@@ -46,7 +46,6 @@ public class MemberJoin extends JFrame {
 		}
 	}
 
-
 	public void formInfo() {
 		lbl1 = new JLabel("이         름 :   ");
 		lbl2 = new JLabel("생년월일 : ");
