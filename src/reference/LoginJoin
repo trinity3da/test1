@@ -1,0 +1,328 @@
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
+import reference.*;
+
+public class LoginJoin extends JFrame {
+  JLabel lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7;
+	JTextField tfName, tfYear, tfMonth, tfDay, tfPhone;
+	JButton btnCheck, btnJoin, btnCancel;
+
+	private Socket soc;
+	private PrintWriter writer;
+	private BufferedReader reader;
+	private JButton btnLogin = new JButton("로그인");
+	private JButton btnAdd = new JButton("회원가입");
+	private JTextField txtPass = new JTextField("");
+	private JLabel lbl = new JLabel("전화번호입력");
+	private JFrame loginFrame, makingFrame;
+
+	public LoginJoin() {
+		formInfo();
+		loginForm();
+		//validateInput();
+		// makingForm();
+
+		try {
+			soc = new Socket("192.168.0.112", 10108);
+			writer = new PrintWriter(soc.getOutputStream());
+			reader = new BufferedReader(new InputStreamReader(
+					soc.getInputStream()));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "접속실패");
+		}
+	}
+
+	public void formInfo() {
+		lbl1 = new JLabel("이        름 :   ");
+		lbl2 = new JLabel("생년월일 : ");
+		lbl3 = new JLabel("년");
+		lbl4 = new JLabel("월");
+		lbl5 = new JLabel("일");
+		lbl6 = new JLabel("전화번호 : ");
+		lbl7 = new JLabel("1980 02 05처럼 4자리, 2자리, 2자리 숫자로 작성");
+		tfName = new JTextField(10);
+		tfYear = new JTextField(4);
+		tfMonth = new JTextField(2);
+		tfDay = new JTextField(2);
+		tfPhone = new JTextField(10);
+		btnCheck = new JButton("전화번호중복확인");
+		btnJoin = new JButton("가입");
+		btnCancel = new JButton("취소");
+	}
+
+	class ImagePanel1 extends JPanel {
+		Image image1;
+
+		public ImagePanel1() {
+			setLayout(null);
+			image1 = new ImageIcon("img/coffee.gif").getImage();
+		}
+
+		public void paint(Graphics g) {
+			g.drawImage(image1, 0, 0, getWidth(), getHeight(), this);
+			setOpaque(false);
+			super.paint(g);
+		}
+	}
+
+	class ImagePanel2 extends JPanel {
+		Image image2;
+
+		public ImagePanel2() {
+			setLayout(null);
+			image2 = new ImageIcon("img/coffee3.gif").getImage();
+		}
+
+		public void paint(Graphics g) {
+			g.drawImage(image2, 0, 0, getWidth(), getHeight(), this);
+			setOpaque(false);
+			super.paint(g);
+		}
+	}
+
+	public void loginForm() {
+		loginFrame = new JFrame();
+		ImagePanel1 i = new ImagePanel1();
+		// add(i);
+		loginFrame.add(i);
+		i.add(txtPass);
+		txtPass.setBounds(40, 15, 120, 30);
+		txtPass.requestFocus();
+		i.add(lbl);
+		lbl.setBounds(65, 45, 120, 30);
+		i.add(btnLogin);
+		btnLogin.addActionListener(login);
+		btnLogin.setBounds(170, 15, 100, 30);
+		i.add(btnAdd);
+		btnAdd.setBounds(170, 45, 100, 30);
+		btnAdd.addActionListener(join);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		setSize(320, 248);
+		setResizable(false);
+		setVisible(true);
+	}
+
+	public void makingForm() {
+		setTitle("회원가입");
+		makingFrame = new JFrame();
+		ImagePanel2 i2 = new ImagePanel2();
+		// add(i2);
+		makingFrame.add(i2);
+		i2.add(lbl1); // 이름 레이블
+		lbl1.setBounds(15, 200, 70, 25); // 이름위치
+		i2.add(tfName); // 이름텍스트필드
+		tfName.setBounds(80, 200, 150, 25); // 필드위치
+		i2.add(lbl2); // 생년월일 레이블
+		lbl2.setBounds(15, 270, 70, 25); // 레이블 위치
+		i2.add(tfYear); // 생년월일 텍스트 레이블
+		tfYear.setBounds(80, 270, 40, 25); // 위치
+		i2.add(lbl3); // 연도 레이블
+		lbl3.setBounds(125, 270, 70, 25); // 위치
+		i2.add(tfMonth); //
+		tfMonth.setBounds(150, 270, 30, 25); //
+		i2.add(lbl4); //
+		lbl4.setBounds(180, 270, 70, 25); //
+		i2.add(tfDay); //
+		tfDay.setBounds(200, 270, 30, 25); //
+		i2.add(lbl5); //
+		lbl5.setBounds(230, 270, 70, 25); //
+		i2.add(lbl7);
+		lbl7.setBounds(18, 295, 400, 25);
+		i2.add(lbl6); //
+		lbl6.setBounds(15, 350, 70, 25); //
+		i2.add(tfPhone); //
+		tfPhone.setBounds(90, 350, 100, 25); //
+		i2.add(btnCheck); //
+		btnCheck.addActionListener(check);
+		btnCheck.setBounds(15, 420, 150, 30); //
+		i2.add(btnJoin); //
+		btnJoin.addActionListener(add);
+		btnJoin.setBounds(15, 460, 70, 25); //
+		i2.add(btnCancel);//
+		btnCancel.addActionListener(cancel);
+		btnCancel.setBounds(95, 460, 70, 25); //
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(400, 533);
+		setResizable(false);
+		setVisible(false);
+	}
+
+	public boolean validateInput() {
+
+		if (tfName.getText().length() == 0) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "이름을 입력해주세요");
+			return false;
+		} else if (tfYear.getText().length() == 0) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "연도를 입력해주세요");
+			return false;
+		} else if (tfYear.getText().length() < 4
+				|| tfYear.getText().length() > 4) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "연도를 확인해주세요");
+			return false;
+		} else if (tfMonth.getText().length() == 0) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "월을 입력해주세요");
+			return false;
+		} else if (tfMonth.getText().length() < 2
+				|| tfMonth.getText().length() > 2) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "월을 확인해주세요");
+			return false;
+		} else if (tfDay.getText().length() == 0) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "일을 입력해주세요");
+			return false;
+		} else if (tfDay.getText().length() < 2 || tfDay.getText().length() > 2) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "일을 확인해주세요");
+			return false;
+		} else if (tfPhone.getText().length() == 0) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "전화번호를 입력해주세요");
+			return false;
+		} else if (tfPhone.getText().length() < 10
+				|| tfPhone.getText().length() > 11) {
+			JOptionPane.showMessageDialog(LoginJoin.this, "전화번호를 확인해주세요");
+			return false;
+		}
+
+		return true;
+	}
+
+	ActionListener add = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			if (!validateInput()) {
+				return;
+			}
+
+			writer.println("*Join*" + tfName.getText() + "*" + tfYear.getText()
+					+ "/" + tfMonth.getText() + "/" + tfDay.getText() + "*"
+					+ tfPhone.getText() + "*");
+			writer.flush();
+
+			while (true) {
+				String str;
+				try {
+					str = reader.readLine();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(LoginJoin.this, "IO 접속실패");
+					return;
+				}
+
+				if (str == null)
+					break;
+				else if (str.equals("Join Success"))
+					JOptionPane.showMessageDialog(LoginJoin.this, "가입성공");
+				else if (str.equals("Join Fail"))
+					JOptionPane.showMessageDialog(LoginJoin.this, "가입실패");
+
+			}
+		}
+
+	};
+
+	ActionListener check = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			writer.println("*Overlab*" + tfPhone.getText() + "*");
+			writer.flush();
+
+			while (true) {
+				String str;
+				try {
+					str = reader.readLine();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(LoginJoin.this, "IO 접속실패");
+					return;
+				}
+
+				if (str == null)
+					break;
+				else if (str.equals("*Non Duplicated*"))
+					JOptionPane
+							.showMessageDialog(LoginJoin.this, "사용가능한 번호입니다");
+				else if (str.equals("*Duplicated*"))
+					JOptionPane.showMessageDialog(LoginJoin.this,
+							"이미 가입된 번호입니다");
+			}
+		}
+	};
+	ActionListener cancel = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			tfName.setText("");
+			tfYear.setText("");
+			tfMonth.setText("");
+			tfDay.setText("");
+			tfPhone.setText("");
+			tfName.requestFocus();
+		}
+	};
+
+	ActionListener login = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				writer.println("*Login*" + txtPass.getText() + "*");
+				writer.flush();
+				while (true) {
+					String str = reader.readLine();
+					if (str == null)
+						break;
+					if (str.equals("***Login_True***"))
+						JOptionPane.showMessageDialog(LoginJoin.this, "로그인 성공");
+
+					if (str.equals("***Login_False***"))
+						JOptionPane.showMessageDialog(LoginJoin.this, "로그인 실패");
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			} finally {
+				try {
+					soc.close();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			if (txtPass.getText().length() == 0) {
+				JOptionPane.showMessageDialog(LoginJoin.this, "전화번호를 입력해주세요");
+			} else if (txtPass.getText().length() < 10
+					|| txtPass.getText().length() > 11) {
+				JOptionPane.showMessageDialog(LoginJoin.this, "전화번호를 확인해주세요");
+				return;
+			}
+		}
+	};
+	ActionListener join = new ActionListener() {
+		public void actionPerformed(ActionEvent e1) {
+			if (e1.getSource() == btnAdd) {
+				loginFrame.setVisible(false);
+				makingFrame.setVisible(true);
+			}
+		}
+	};
+
+	public static void main(String[] args) throws Exception {
+
+		for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+			System.out.println(info.getName());
+			if ("Nimbus".equals(info.getName())) {
+				UIManager.setLookAndFeel(info.getClassName());
+				break;
+			}
+		}
+		new LoginJoin();
+	}
+}
