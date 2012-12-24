@@ -1,0 +1,125 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.UIManager.*;
+
+import reference.*;
+
+import java.io.*;
+import java.net.*;
+
+// 입력한 id와 비밀번호가 일치한다면 로그인 성공이라는 출력하시오.
+public class LoginForm extends JFrame {
+  // private static final String pass = "01050932839";
+	private JButton btnLogin = new JButton("로그인");
+	private JButton btnAdd = new JButton("회원가입");
+	// private JPasswordField txtPass = new JPasswordField("");
+	private JTextField txtPass = new JTextField("");
+	private JLabel lbl = new JLabel("전화번호입력");
+	private Socket soc;
+
+	ActionListener add = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				soc = new Socket("192.168.0.112", 10109);
+				PrintWriter writer = new PrintWriter(soc.getOutputStream());
+				writer.println("*Login*" + txtPass.getText() + "*");
+				writer.flush();
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(soc.getInputStream()));
+				while (true) {
+					String str = reader.readLine();
+					if (str == null)
+						break;
+					if (str.equals("***Login_True***"))
+						JOptionPane.showMessageDialog(LoginForm.this, "로그인 성공");
+					if (str.equals("***Login_False***"))
+						JOptionPane.showMessageDialog(LoginForm.this, "로그인 실패");
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			} finally {
+				try {
+					soc.close();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			if (txtPass.getText().length() == 0) {
+				JOptionPane.showMessageDialog(LoginForm.this, "전화번호를 입력해주세요");
+			} else if (txtPass.getText().length() < 10
+					|| txtPass.getText().length() > 11) {
+				JOptionPane.showMessageDialog(LoginForm.this, "전화번호를 확인해주세요");
+				return;
+			}
+		}
+	};
+
+	ActionListener join = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e1) {
+			String cmd = e1.getActionCommand();
+
+			if (cmd.equals("Open")) {
+				dispose();
+				new MemberJoin();
+			}
+		}
+	};
+
+	class ImagePanel extends JPanel {
+		Image image;
+
+		public ImagePanel() {
+			setLayout(null);
+			image = new ImageIcon("img/coffee.gif").getImage();
+		}
+
+		public void paint(Graphics g) {
+			g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+			setOpaque(false);
+			super.paint(g);
+		}
+	}
+
+	public LoginForm() {
+		ImagePanel i = new ImagePanel();
+		add(i);
+		i.add(txtPass);
+		txtPass.setBounds(40, 15, 120, 30);
+		txtPass.requestFocus();
+		i.add(lbl);
+		lbl.setBounds(65, 45, 120, 30);
+		i.add(btnLogin);
+		btnLogin.addActionListener(add);
+		btnLogin.setBounds(170, 15, 100, 30);
+		i.add(btnAdd);
+		btnAdd.addActionListener(join);
+		btnAdd.setActionCommand("Open");
+		btnAdd.setBounds(170, 45, 100, 30);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(320, 248);
+		// setResizable(false);
+		setVisible(true);
+	}
+
+	public static void main(String[] args) throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException,
+			UnsupportedLookAndFeelException {
+		for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+			if ("Nimbus".equals(info.getName())) {
+				UIManager.setLookAndFeel(info.getClassName());
+				break;
+			}
+		}
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				new LoginForm();
+			}
+
+		});
+	}
+}
